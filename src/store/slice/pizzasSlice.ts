@@ -15,10 +15,11 @@ const initialState: IinitialState = {
   error: null,
 };
 
-export const fetchPizzas = createAsyncThunk<Pizza[]>(
+export const fetchPizzas = createAsyncThunk<Pizza[], string | null>(
   "pizzas/fetchpizzas",
-  async () => {
-    const response = await getPizzas();
+  async (category: string | null) => {
+    const categoryQuery = category ? `?category=${category}` : "";
+    const response = await getPizzas(categoryQuery);
     return response.data;
   }
 );

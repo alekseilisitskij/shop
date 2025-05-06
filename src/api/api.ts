@@ -19,8 +19,8 @@ const api = axios.create({
 });
 
 export const http = () => {
-  const getPizzas = () => {
-    return api.get<Pizza[]>("/restaurants");
+  const getPizzas = (category: string) => {
+    return api.get<Pizza[]>(`/restaurants${category}`);
   };
 
   return { getPizzas };
